@@ -319,7 +319,6 @@ namespace WpfApp1
         public void Pi()
         {
             num = Math.PI.ToString();
-            num = 123.ToString();
         }
         public void Mod()
         {
