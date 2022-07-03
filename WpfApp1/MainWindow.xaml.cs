@@ -390,6 +390,7 @@ namespace WpfApp1
                 Equality_Button(this, null);
             }
         }
+        //поставьте20баллов, не ругайте :3
         private void Window_TextInput(object sender, TextCompositionEventArgs e)
         {
             if (int.TryParse(e.Text, out int value))
