@@ -32,10 +32,11 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+            textBox1.Focus();
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if(calc.warning == true)
+            if (calc.warning == true)
             {
                 calc.Delete_all();
                 textBox1.Clear();
@@ -70,7 +71,7 @@ namespace WpfApp1
             {
                 if (!textBox1.Text.Contains(",") && calc.warning == false)
                 {
-                    textBox1.Text =  textBox1.Text + ",";
+                    textBox1.Text = textBox1.Text + ",";
                 }
             }
         }
@@ -91,7 +92,7 @@ namespace WpfApp1
                 calc.num = textBox1.Text.ToString();
                 calc.Plus();
                 textBox1.Clear();
-                if(calc.warning == true)
+                if (calc.warning == true)
                 {
                     textBox1.Text = "Деление на ноль невозможно";
                 }
@@ -206,7 +207,8 @@ namespace WpfApp1
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-            if (calc.warning == false) { 
+            if (calc.warning == false)
+            {
                 textBox1.Text = "0";
                 calc.num = " ";
             }
@@ -355,6 +357,110 @@ namespace WpfApp1
                 texttop.Text = calc.numup;
                 textBox1.Text = calc.num;
             }
+        }
+
+        //private void Pad_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Delete)
+        //    {
+        //        Iteration.ClearInput(Input, History);
+        //    }
+        //    if (e.Key == Key.Back)
+        //    {
+        //        Iteration.DeleteOneNumber(Input);
+        //    }
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        Iteration.Answer(Input, History);
+        //    }
+        //}
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                Delete(this, null);
+
+            }
+            if (e.Key == Key.Back)
+            {
+                Back_Button(this, null);
+            }
+            if (e.Key == Key.Enter)
+            {
+                Equality_Button(this, null);
+            }
+        }
+        private void Window_TextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (int.TryParse(e.Text, out int value))
+            {
+                if (textBox1.Text == "0")
+                {
+                    textBox1.Text = e.Text;
+
+                }
+                else if (textBox1.Text == "Это не число" || textBox1.Text == "∞")
+                {
+                    textBox1.Text = e.Text;
+                }
+                else
+                {
+                    textBox1.Text = textBox1.Text + e.Text;
+                }
+            }
+            else if (e.Text == ",")
+            {
+                Comma_Button(this, null);
+            }
+            else if (e.Text == "Q" || e.Text == "q" || e.Text == "й" || e.Text == "Й")
+            {
+                Sqrt_Button(this, null);
+            }
+            else if (e.Text == "=")
+            {
+                Equality_Button(this, null);
+            }
+            else if (e.Text == "%")
+            {
+                Proc_Button(this, null);
+            }
+            else if (e.Text == "A" || e.Text == "a" || e.Text == "ф" || e.Text == "Ф")
+            {
+                MC_Button(this, null);
+            }
+            else if (e.Text == "S" || e.Text == "s" || e.Text == "ы" || e.Text == "Ы")
+            {
+                MR_button_Click(this, null);
+            }
+            else if (e.Text == "D" || e.Text == "d" || e.Text == "в" || e.Text == "В")
+            {
+                MS_Button(this, null);
+            }
+            else if (e.Text == "F" || e.Text == "f" || e.Text == "а" || e.Text == "А")
+            {
+                MPlus_Button_Click(this, null);
+            }
+            else if (e.Text == "G" || e.Text == "g" || e.Text == "п" || e.Text == "П")
+            {
+                MMinus_button_Click(this, null);
+            }
+
+            switch (e.Text)
+            {
+                case "+":
+                    Plus_Button(sender, null);
+                    break;
+                case "-":
+                    Minus_Button(sender, null);
+                    break;
+                case "*":
+                    Multi_Button(sender, null);
+                    break;
+                case "/":
+                    Division_Button(sender, null);
+                    break;
+            }
+
         }
     }
 }

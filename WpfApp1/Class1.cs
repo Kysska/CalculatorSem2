@@ -327,21 +327,29 @@ namespace WpfApp1
                 num = (Double.Parse(num) * (-1)).ToString();
             }
         }
+        private static double ToRadians(double angle)
+        {
+            return angle * Math.PI / 180.0;
+        }
         public void Sin()
         {
-            num = Math.Sin(Double.Parse(num)).ToString();
+            double rad = ToRadians(Double.Parse(num));
+            num = Math.Sin(rad).ToString();
         }
         public void Cos()
         {
-            num = Math.Cos(Double.Parse(num)).ToString();
+            double rad = ToRadians(Double.Parse(num));
+            num = Math.Cos(rad).ToString();
         }
         public void Tg()
         {
-            num = Math.Tan(Double.Parse(num)).ToString();
+            double rad = ToRadians(Double.Parse(num));
+            num = Math.Tan(rad).ToString();
         }
         public void Ctg()
         {
-            num = (1 / Math.Tan(Double.Parse(num))).ToString();
+            double rad = ToRadians(Double.Parse(num));
+            num = (1/ Math.Tan(rad)).ToString();
         }
         public void Plus_Minus()
         {
